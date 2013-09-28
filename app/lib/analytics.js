@@ -2,11 +2,11 @@ window.mixpanel = window.mixpanel || [];
 window._gaq = window._gaq || [];
 if (!window.Intercom) {
     var i = function () {
-        i.c(arguments)
+        i.c(arguments);
     };
     i.q = [];
     i.c = function (args) {
-        i.q.push(args)
+        i.q.push(args);
     };
 
     window.Intercom = i;
