@@ -326,7 +326,8 @@ module.exports = function (grunt) {
 							DOCS: 'https://docs.balancedpayments.com',\
 							DEBUG: true,\
 							MIXPANEL: '',\
-							GOOGLE_ANALYTICS: ''\
+							GOOGLE_ANALYTICS: '',\
+							INTERCOM: { app_id:'c03fc51876ece96ad15fb20946e9218dfae88912' }\
 						}\
 					}"
 				},
@@ -347,7 +348,8 @@ module.exports = function (grunt) {
 							DOCS: 'https://docs.balancedpayments.com',\
 							DEBUG: false,\
 							MIXPANEL: '991598fc644dd5d0894e6cb070154330',\
-							GOOGLE_ANALYTICS: 'UA-30733850-1'\
+							GOOGLE_ANALYTICS: 'UA-30733850-1',\
+							INTERCOM: { app_id:'c03fc51876ece96ad15fb20946e9218dfae88912' }\
 						}\
 					}"
 				},

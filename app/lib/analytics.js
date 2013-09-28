@@ -1,10 +1,22 @@
 window.mixpanel = window.mixpanel || [];
 window._gaq = window._gaq || [];
+if (!window.Intercom) {
+    var i = function () {
+        i.c(arguments)
+    };
+    i.q = [];
+    i.c = function (args) {
+        i.q.push(args)
+    };
+
+    window.Intercom = i;
+}
 
 Balanced.Analytics = (function () {
 	if(!window.TESTING) {
 		// This page will almost always be over https, so can just load this directly.
 		$.getScript('https://ssl.google-analytics.com/ga.js', { cache: true });
+		$.getScript('https://static.intercomcdn.com/intercom.v1.js', { cache: true });
 	}
 
 	// links the current id with this specific id
@@ -14,6 +26,10 @@ Balanced.Analytics = (function () {
 			Raven.setUser({
 				email: email
 			});
+
+			var intercomObj = _.extend({ email: email, "widget": { "activator": "#IntercomDefaultWidget" } }, ENV.BALANCED.INTERCOM);
+			window.intercomSettings = intercomObj;
+			window.Intercom('boot', intercomObj);
 		} catch (err) {
 		}
 	}
@@ -88,5 +104,4 @@ Balanced.Analytics = (function () {
 			window._gaq.push(['_trackEvent', 'dashboard', name]);
 		}
 	};
-
 })();
