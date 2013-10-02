@@ -9,7 +9,9 @@ Balanced.Notifications = (function() {
 		}
 
 		if (!Balanced.Auth.user || !Balanced.Auth.user.email_address) {
-			this.set('notifications', [{ message: ' You\'re logged in as a temporary guest user. <a href="#/claim">Claim your account to save your data. &gt;</a>' }]);
+			this.set('notifications', [{
+				message: ' You\'re logged in as a temporary guest user. <a href="#/claim">Claim your account to save your data. &gt;</a>'
+			}]);
 			return;
 		}
 
