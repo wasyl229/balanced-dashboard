@@ -1,5 +1,5 @@
 Balanced.Notifications = (function() {
-	var notifications = Ember.Object.extend(Ember.Evented).create();
+	var notifications = Ember.Object.create();
 
 	notifications.listNotifications = function() {
 		var self = this;
@@ -9,8 +9,7 @@ Balanced.Notifications = (function() {
 		}
 
 		if (!Balanced.Auth.user || !Balanced.Auth.user.email_address) {
-			this.set('notifications', [' You\'re logged in as a temporary guest user. <a href="#/claim">Claim your account to save your data. &gt;</a>']);
-			self.trigger('notificationListUpdate');
+			this.set('notifications', [{ message: ' You\'re logged in as a temporary guest user. <a href="#/claim">Claim your account to save your data. &gt;</a>' }]);
 			return;
 		}
 
@@ -18,15 +17,18 @@ Balanced.Notifications = (function() {
 			url: ENV.BALANCED.NOTIFICATIONS + 'notifications?email=' + Balanced.Auth.user.email_address
 		}).done(function(response, status, jqxhr) {
 			self.set('notifications', response.data || []);
-			self.trigger('notificationListUpdate');
 		});
 	};
 
 	notifications.deleteAll = function() {
-		this.deleteNotifications(_.pluck(this.get('notifications'), 'id'));
+		this.deleteNotifications(_.compact(_.pluck(this.get('notifications'), 'id')));
 	};
 
 	notifications.deleteNotifications = function(notificationIds) {
+		if (!notificationIds || !notificationIds.length) {
+			return;
+		}
+
 		return _.each(notificationIds, _.bind(notifications.deleteNotification, notifications));
 	};
 

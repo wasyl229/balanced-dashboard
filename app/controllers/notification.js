@@ -4,16 +4,16 @@ Balanced.NotificationController = Ember.Controller.extend({
 	shownNotificationCenter: true,
 
 	init: function() {
-		var self = this;
 		this.populateNotificationQueue = _.bind(this.populateNotificationQueue, this);
-
-		Balanced.Notifications.on('notificationListUpdate', function() {
-			self.set('notificationQueue', Balanced.Notifications.get('notifications'));
-		});
+		Balanced.Notifications.addObserver('notifications', this, this.updateNotificationQueue);
 
 		this.populateNotificationQueue();
 		Balanced.Auth.on('signInSuccess', this.populateNotificationQueue);
 		Balanced.Auth.on('signOutSuccess', this.populateNotificationQueue);
+	},
+
+	updateNotificationQueue: function() {
+		this.set('notificationQueue', Balanced.Notifications.get('notifications'));
 	},
 
 	showNotificationCenter: function() {
