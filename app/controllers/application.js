@@ -1,5 +1,5 @@
 Balanced.ApplicationController = Ember.Controller.extend({
-	showNotificationCenter: true,
+	needs: ['notification'],
 
 	alert: function(options) {
 		this.set('alertObj', options);
@@ -13,16 +13,6 @@ Balanced.ApplicationController = Ember.Controller.extend({
 			} else {
 				this.set('alertObj', null);
 			}
-		}
-	},
-
-	actions: {
-		closeNotificationCenter: function() {
-			this.set('showNotificationCenter', false);
-		},
-
-		toggleNotificationCenter: function() {
-			this.set('showNotificationCenter', !this.get('showNotificationCenter'));
 		}
 	}
 });

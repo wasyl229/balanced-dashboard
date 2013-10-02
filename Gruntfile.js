@@ -303,6 +303,7 @@ module.exports = function(grunt) {
 							AUTH: 'https://auth.balancedpayments.com',\
 							WWW: 'https://www.balancedpayments.com',\
 							DOCS: 'https://docs.balancedpayments.com',\
+							NOTIFICATIONS: 'http://localhost:5000/',\
 							DEBUG: true,\
 							MIXPANEL: '',\
 							GOOGLE_ANALYTICS: ''\
@@ -325,6 +326,7 @@ module.exports = function(grunt) {
 							AUTH: 'https://auth.balancedpayments.com',\
 							WWW: 'https://www.balancedpayments.com',\
 							DOCS: 'https://docs.balancedpayments.com',\
+							NOTIFICATIONS: 'https://notifications.balancedpayments.com',\
 							DEBUG: false,\
 							MIXPANEL: '991598fc644dd5d0894e6cb070154330',\
 							GOOGLE_ANALYTICS: 'UA-30733850-1'\

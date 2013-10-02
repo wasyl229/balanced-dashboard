@@ -1,19 +1,26 @@
 <div class="alert-row">
-  {{#if Balanced.Auth.isGuest}}
-
-    {{#if controllers.application.showNotificationCenter}}
+  {{#if controllers.notification.hasNotifications}}
+    {{#if controllers.notification.showNotificationCenter}}
       <div class="row notification-center notification-center-row">
         <div class="span2">
-          <div {{bindAttr class=":icon-button-group controllers.application.showNotificationCenter:open"}}>
-            <button type="button" class="icon icon-notification notification-bell" {{action toggleNotificationCenter target="controllers.application"}}></button>
-            <button type="button" class="callout triangle-isosceles left" {{action toggleNotificationCenter target="controllers.application"}}>1</button>
+          <div {{bindAttr class=":icon-button-group controllers.notification.showNotificationCenter:open"}}>
+            <button type="button" class="icon icon-notification notification-bell" {{action toggleNotificationCenter target="controllers.notification"}}></button>
+            <button type="button" class="callout triangle-isosceles left" {{action toggleNotificationCenter target="controllers.notification"}}>{{controllers.notification.numNotifications}}</button>
           </div>
         </div>
         <div class="span20">
-          <span> You're logged in as a temporary guest user. {{#linkTo 'claim'}}Claim your account to save your data. >{{/linkTo}}</span>
+          {{#if controllers.notification.hasMoreThanOneNotification}}
+            <div class="span2">
+              <button type="button" class="btn-icon icon-arrow-backward-dashboard" {{action previousNotification target="controllers.notification"}}></button>
+              <button type="button" class="btn-icon icon-arrow-forward-dashboard" {{action nextNotification target="controllers.notification"}}></button>
+            </div>
+
+            <span>{{controllers.notification.currentIndex}} of {{controllers.notification.numNotifications}}:</span>
+          {{/if}}
+          <span>{{{controllers.notification.currentNotification}}}</span>
         </div>
         <div class="span2">
-          <button type="button" class="close" {{action closeNotificationCenter target="controllers.application"}}>&times;</button>
+          <button type="button" class="icon-close-x-dashboard btn-icon" {{action closeNotificationCenter target="controllers.notification"}}></button>
         </div>
       </div>
 
@@ -22,11 +29,10 @@
       {{#unless controllers.application.alertObj}}
         <div class="notification-center">
         <div {{bindAttr class=":icon-button-group controllers.application.showNotificationCenter:open"}}>
-          <button type="button" class="icon icon-notification notification-bell" {{action toggleNotificationCenter target="controllers.application"}}></button>
-          <button type="button" class="callout triangle-isosceles left" {{action toggleNotificationCenter target="controllers.application"}}>1</button>
+          <button type="button" class="icon icon-notification notification-bell" {{action toggleNotificationCenter target="controllers.notification"}}></button>
+          <button type="button" class="callout triangle-isosceles left" {{action toggleNotificationCenter target="controllers.notification"}}>{{controllers.notification.numNotifications}}</button>
         </div>
       {{/unless}}
-
     {{/if}}
   {{/if}}
 
@@ -34,12 +40,12 @@
     <div {{bindAttr class=":alert-strip controllers.application.alertObj.type"}}></div>
     <div {{bindAttr class=":alert controllers.application.alertObj.type"}}>
       <div class="button-wrapper left">
-        {{#if Balanced.Auth.isGuest}}
-          {{#unless controllers.application.showNotificationCenter}}
+        {{#if controllers.notification.hasNotifications}}
+          {{#unless controllers.notification.showNotificationCenter}}
           <div class="notification-center">
-            <div {{bindAttr class=":icon-button-group controllers.application.showNotificationCenter:open"}}>
-              <button type="button" class="icon icon-notification notification-bell" {{action toggleNotificationCenter target="controllers.application"}}></button>
-              <button type="button" class="callout triangle-isosceles left" {{action toggleNotificationCenter target="controllers.application"}}>1</button>
+            <div {{bindAttr class=":icon-button-group controllers.notification.showNotificationCenter:open"}}>
+              <button type="button" class="icon icon-notification notification-bell" {{action toggleNotificationCenter target="controllers.notification"}}></button>
+              <button type="button" class="callout triangle-isosceles left" {{action toggleNotificationCenter target="controllers.notification"}}>{{controllers.notification.numNotifications}}</button>
             </div>
           </div>
           {{/unless}}
