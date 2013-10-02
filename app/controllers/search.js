@@ -1,6 +1,6 @@
 Balanced.SearchController = Balanced.ObjectController.extend(
 	Balanced.ResultsTable, {
-		needs: ['application', 'marketplace'],
+		needs: ['application', 'marketplace', 'notification'],
 
 		search: null,
 		debounced_search: null,

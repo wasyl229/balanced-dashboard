@@ -22,6 +22,7 @@ require('app/models/core/core');
 require('app/models/**/*');
 
 require('app/auth');
+require('app/notifications');
 
 /*
  * Views layer.
