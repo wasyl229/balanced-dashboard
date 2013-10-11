@@ -1,7 +1,10 @@
-var addCustomerRoutePath = '/marketplaces/TEST-MP5m04ORxNlNDm1bB7nkcgSY/add_customer';
+var addCustomerRoutePath;
 
 module('AddCustomer', {
-	setup: function() {},
+	setup: function() {
+		Balanced.TEST.setupMarketplace();
+		addCustomerRoutePath = '/marketplaces/' + Balanced.TEST.MARKETPLACE_ID + '/add_customer';
+	},
 	teardown: function() {}
 });
 
@@ -9,7 +12,6 @@ test('can visit page', function(assert) {
 	// check the page title has been selected
 	visit(addCustomerRoutePath).then(function() {
 		var $title = $('#content h1');
-
 		assert.equal($title.text().trim(), 'Add a customer', 'Title is not correct');
 	});
 });
@@ -19,7 +21,7 @@ test('can create person customer', function(assert) {
 
 	visit(addCustomerRoutePath)
 		.click("fieldset.application-type a.person")
-		.click(".disclosure-button a")
+		.click(".disclosure-button")
 		.fillIn('#add-customer input[name="name"]', 'TEST')
 		.fillIn('#add-customer input[name="email"]', 'nick@example.com')
 		.fillIn('#add-customer input[name="address.line1"]', '1234 main street')
@@ -43,7 +45,7 @@ test('can create person customer', function(assert) {
 			assert.equal($('#content h1').text().trim(), 'Customer', 'Title is not correct');
 
 			// make sure we made the correct call with the proper object
-			assert.ok(spy.calledWith(Balanced.Customer, '/v1/customers', {
+			assert.ok(spy.calledWith(Balanced.Customer, '/v1/customers', sinon.match({
 				name: 'TEST',
 				applicationType: 'PERSON',
 				address: {
@@ -60,7 +62,7 @@ test('can create person customer', function(assert) {
 				phone: "1231231234",
 				ssn_last4: "1234",
 				twitter: "kleinsch"
-			}));
+			})));
 		});
 });
 
@@ -69,7 +71,7 @@ test('can create business customer', function(assert) {
 
 	visit(addCustomerRoutePath)
 		.click("fieldset.application-type a.business")
-		.click(".disclosure-button a")
+		.click(".disclosure-button")
 		.fillIn('#add-customer input[name="business_name"]', 'Something Inc')
 		.fillIn('#add-customer input[name="ein"]', '123123123')
 		.fillIn('#add-customer input[name="name"]', 'TEST')
@@ -95,7 +97,7 @@ test('can create business customer', function(assert) {
 			assert.equal($('#content h1').text().trim(), 'Customer', 'Title is not correct');
 
 			// make sure we made the correct call with the proper object
-			assert.ok(spy.calledWith(Balanced.Customer, '/v1/customers', {
+			assert.ok(spy.calledWith(Balanced.Customer, '/v1/customers', sinon.match({
 				name: "TEST",
 				applicationType: "BUSINESS",
 				business_name: "Something Inc",
@@ -113,6 +115,6 @@ test('can create business customer', function(assert) {
 				phone: "1231231234",
 				ssn_last4: "1234",
 				twitter: "kleinsch"
-			}));
+			})));
 		});
 });
