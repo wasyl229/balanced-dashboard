@@ -16,7 +16,7 @@ Balanced.Notifications = (function() {
 		}
 
 		return Balanced.NET.ajax({
-			url: ENV.BALANCED.NOTIFICATIONS + 'notifications?email=' + Balanced.Auth.user.email_address
+			url: ENV.BALANCED.NOTIFICATIONS + 'notifications'
 		}).done(function(response, status, jqxhr) {
 			self.set('notifications', response.data || []);
 		});
