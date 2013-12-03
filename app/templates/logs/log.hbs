@@ -14,7 +14,7 @@
         </div>
         <div class="key-value-row">
             <label class="key">URI</label>
-            <span class="value">{{ model.short_url }}</span>
+            <span class="value"><a {{bindAttr href="model.link_to_url"}}>{{ model.short_url }}</a></span>
         </div>
         <div class="key-value-row">
             <label class="key">Status</label>
@@ -42,7 +42,7 @@
                 <h3>Request body</h3>
             </header>
 
-            {{view Balanced.PrettyPrintView contentBinding=model.message.request.payload}}
+            {{view Balanced.PrettyPrintView contentBinding=model.request_payload}}
         </section>
     </div>
 </div>
@@ -54,7 +54,7 @@
                 <h3>Response body</h3>
             </header>
 
-             {{view Balanced.PrettyPrintView contentBinding=model.message.response.body}}
+             {{view Balanced.PrettyPrintView contentBinding=model.response_body}}
         </section>
     </div>
 </div>
