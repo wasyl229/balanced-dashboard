@@ -74,6 +74,9 @@ Balanced.Router.map(function() {
 			this.route('add_customer', {
 				path: 'add_customer'
 			});
+			this.route('pay_sellers', {
+				path: 'pay_sellers'
+			});
 			this.route('initial_deposit', {
 				path: '/initial_deposit'
 			});
