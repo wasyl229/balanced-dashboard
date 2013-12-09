@@ -162,8 +162,13 @@ Balanced.Auth = (function() {
 		auth.set('user', user);
 		auth.set('isGuest', isGuest);
 
-		auth.getExtensions();
-		auth.loadAdminExtension();
+		if (signedIn && user) {
+			auth.getExtensions();
+
+			if (user.admin) {
+				auth.loadAdminExtension();
+			}
+		}
 	};
 
 	auth.rememberLogin = function(token) {
