@@ -17,6 +17,12 @@ window.setupBalanced = function(divSelector) {
 		rootElement: divSelector,
 		LOG_TRANSITIONS: true,
 
+		render: function() {
+			// TODO: Massive Hack to trigger rerender
+			// Needed when we load extensions as some change the current view
+			return this.__container__.lookup('router:main')._activeViews.application[0].rerender();
+		},
+
 		customEvents: {
 			// key is the jquery event, value is the name used in views
 			changeDate: 'changeDate'

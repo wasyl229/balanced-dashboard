@@ -56,7 +56,6 @@ function makeNestedResource(that, plural, singular) {
 }
 
 Balanced.Router.map(function() {
-
 	this.resource('marketplaces', {
 		path: '/marketplaces'
 	}, function() {
