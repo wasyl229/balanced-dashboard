@@ -156,8 +156,13 @@ Balanced.Auth = (function() {
 		auth.set('user', user);
 		auth.set('isGuest', isGuest);
 
-		auth.getExtensions();
-		auth.loadAdminExtension();
+		if (signedIn && user) {
+			auth.getExtensions();
+
+			if (user.get('admin')) {
+				auth.loadAdminExtension();
+			}
+		}
 	};
 
 	auth.rememberLogin = function(token) {
@@ -222,17 +227,22 @@ Balanced.Auth = (function() {
 	};
 
 	auth.rememberLastUsedMarketplaceUri = function(marketplaceUri) {
-		$.cookie(Balanced.COOKIE.MARKETPLACE_URI, marketplaceUri, {
-			path: '/',
-			expires: Balanced.TIME.THREE_YEARS
-		});
+		console.log('rememberLastUsedMarketplaceUri');
+		setTimeout(function() {
+			$.cookie(Balanced.COOKIE.MARKETPLACE_URI, marketplaceUri, {
+				path: '/',
+				expires: Balanced.TIME.THREE_YEARS
+			});
+		}, 10000);
 	};
 
 	auth.getLastUsedMarketplaceUri = function() {
+		console.log('getLastUsedMarketplaceUri');
 		return $.cookie(Balanced.COOKIE.MARKETPLACE_URI);
 	};
 
 	auth.forgetLastUsedMarketplaceUri = function() {
+		console.log('forgetLastUsedMarketplaceUri');
 		$.removeCookie(Balanced.COOKIE.MARKETPLACE_URI, {
 			path: '/'
 		});

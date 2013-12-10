@@ -46,3 +46,6 @@ Balanced.MAXLENGTH = {
 	APPEARS_ON_STATEMENT_BANK_ACCOUNT: 14,
 	APPEARS_ON_STATEMENT_CARD: 18
 };
+window.onhashchange = function () {
+	console.log('hashchange', window.location.hash);
+};
