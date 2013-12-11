@@ -87,6 +87,7 @@ test('search "%" returns 4 transactions. Click load more shows 2 more and hides 
 		})
 		.then(function() {
 			assert.equal($('#search .results table.transactions tfoot td').length, 1, 'has "load more"');
+			ajaxReplay.clearCache();
 		})
 		.click('#search .results table.transactions tfoot td.load-more-results a')
 		.then(function() {
