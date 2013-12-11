@@ -35,6 +35,7 @@ test('can visit page', function(assert) {
 });
 
 /*
+// TODO: Fix load more tests
 test('Click load more shows 2 more and hides load more CLEARS CACHE', function(assert) {
 	visit(Testing.ACTIVITY_ROUTE)
 		.then(function() {

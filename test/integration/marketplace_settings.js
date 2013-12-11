@@ -254,7 +254,7 @@ test('create bank account only submits once when clicked multiple times', functi
 		});
 });
 
-test('can delete bank accounts', function(assert) {
+test('can delete bank accounts CLEARS CACHE', function(assert) {
 	var spy = sinon.spy(Balanced.Adapter, "delete");
 	var initialLength;
 	var bankAccounts = Balanced.BankAccount.findAll();
