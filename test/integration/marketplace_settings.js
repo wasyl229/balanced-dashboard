@@ -395,7 +395,7 @@ test('can delete cards', function(assert) {
 		});
 });
 
-test('shows webhooks', function(assert) {
+test('shows webhooks CLEARS CACHE', function(assert) {
 	visit(Testing.SETTINGS_ROUTE)
 		.then(function() {
 			assert.equal($('ul.webhooks li').length, 1);

@@ -206,7 +206,7 @@ test("debit customer triggers reload of transactions", function(assert) {
 		});
 });
 
-test('can credit customer', function(assert) {
+test('can credit customer CLEARS CACHE', function(assert) {
 	var spy = sinon.spy(Balanced.Adapter, "create");
 
 	visit(Testing.CUSTOMER_ROUTE)

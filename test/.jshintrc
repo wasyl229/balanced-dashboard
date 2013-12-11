@@ -42,6 +42,8 @@
     "fillIn": true,
     "click": true,
     "keyDown": true,
-    "wait": true
+    "wait": true,
+
+	"ajaxReplay": true
   }
 }

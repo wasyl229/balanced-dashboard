@@ -4,6 +4,10 @@ QUnit.testStart(function(test) {
 	var module = test.module ? test.module : '';
 	console.log('#' + module + " " + test.name + ": starting setup.");
 
+	if (test.name.indexOf('CLEARS CACHE') >= 0) {
+		ajaxReplay.clearCache();
+	}
+
 	// Display an error if asynchronous operations are queued outside of
 	// Ember.run.  You need this if you want to stay sane.
 	Ember.testing = true;
@@ -32,9 +36,11 @@ QUnit.testStart(function(test) {
 
 	// turn off ajax async
 	$.ajaxSetup({
-		async: false
+		async: false,
+		xhr: function() {
+			return (new ajaxReplay.XMLHttpRequest());
+		}
 	});
-
 });
 
 QUnit.testDone(function(test) {

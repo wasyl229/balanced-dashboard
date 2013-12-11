@@ -1,5 +1,7 @@
 module('Logs', {
 	setup: function() {
+		ajaxReplay.clearCache();
+
 		Testing.setupMarketplace();
 		Testing.createDebits();
 
@@ -19,6 +21,7 @@ module('Logs', {
 				return start();
 			} else if (count < 300) {
 				count++;
+				ajaxReplay.clearCache();
 				return setTimeout(checkAndStart, 1000);
 			} else {
 				throw new Error('Logs not working');

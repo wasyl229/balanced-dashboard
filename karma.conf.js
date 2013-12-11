@@ -17,6 +17,7 @@ module.exports = function(config) {
 			'build/test/js/testenv.js',
 			'build/js/lib-dev.js',
 			'test/support/lib/balanced.min.js',
+			'test/support/lib/ajaxreplay.js',
 			'build/js/dashboard-dev.js',
 			'build/test/js/test-fixtures.js',
 			'test/support/testconfig.js',
