@@ -2,6 +2,27 @@
 // Generated on Thu Aug 29 2013 15:59:23 GMT-0700 (PDT)
 
 module.exports = function(config) {
+	var filesToInclude = [
+		'build/css/base.min.css',
+		'build/test/js/sinon.js',
+		'build/test/js/testenv.js',
+		'build/js/lib-dev.js',
+		'test/support/lib/balanced.min.js',
+		'build/js/dashboard-dev.js',
+		'build/test/js/test-fixtures.js',
+		'test/support/testconfig.js',
+		'test/lib/*.js',
+		'test/unit/**/*',
+		'test/integration/**/*'
+	];
+
+	if (process.argv.indexOf('--no-cache') < 0 && process.argv.indexOf('-nc') < 0) {
+		filesToInclude.push('test/support/lib/ajaxreplay.js');
+		console.log('memememe');
+	}
+
+	console.log('memememe');
+
 	config.set({
 
 		// base path, that will be used to resolve files and exclude
@@ -11,20 +32,7 @@ module.exports = function(config) {
 		frameworks: ['qunit'],
 
 		// list of files / patterns to load in the browser
-		files: [
-			'build/css/base.min.css',
-			'build/test/js/sinon.js',
-			'build/test/js/testenv.js',
-			'build/js/lib-dev.js',
-			'test/support/lib/balanced.min.js',
-			'test/support/lib/ajaxreplay.js',
-			'build/js/dashboard-dev.js',
-			'build/test/js/test-fixtures.js',
-			'test/support/testconfig.js',
-			'test/lib/*.js',
-			'test/unit/**/*',
-			'test/integration/**/*'
-		],
+		files: filesToInclude,
 
 		// list of files to exclude
 		exclude: [
@@ -51,7 +59,7 @@ module.exports = function(config) {
 
 		// level of logging
 		// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-		logLevel: config.LOG_INFO,
+		logLevel: config.LOG_DEBUG,
 
 		// enable / disable watching file and executing tests whenever any file changes
 		autoWatch: false,

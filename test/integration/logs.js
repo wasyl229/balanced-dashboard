@@ -54,7 +54,7 @@ test('has logs in table', function(assert) {
 		.then(function() {
 			assert.equal($('table.logs tbody tr').length, 2, 'has 2 logs');
 			// assert.equal($('table.logs tfoot td').length, 1, 'has "load more"');
-		})
+		});
 		// TODO: Fix load more tests
 		// .click('table.logs tfoot tr a')
 		// .then(function() {
