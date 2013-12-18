@@ -390,6 +390,28 @@ module.exports = function(grunt) {
 			}
 		},
 
+		cdn: {
+			options: {
+				// Provide the approate cdn url here
+				cdn: 'http://cdn.cloudfront.net/container/',
+				flatten: false
+			},
+			production: {
+				options: {
+					// Provide the approate cdn url here
+					cdn: 'http://cdn.cloudfront.net/container/'
+				},
+				src: ['./dist/*.html', './dist/*.css']
+			},
+			preview: {
+				options: {
+					// Provide the approate cdn url here
+					cdn: 'http://cdn.cloudfront.net/container/'
+				},
+				src: ['./dist/*.html', './dist/*.css']
+			},
+		},
+
 		s3: {
 			options: {
 				access: 'public-read',
@@ -630,6 +652,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-jsbeautifier');
+	grunt.loadNpmTasks('grunt-cdn');
 
 	grunt.registerMultiTask('clean', 'Deletes files', function() {
 		this.files.forEach(function(file) {
@@ -665,8 +688,8 @@ module.exports = function(grunt) {
 	Uploads to s3. Requires environment variables to be set if the bucket
 	you're uploading to doesn't have public write access.
 	*/
-	grunt.registerTask('deploy', ['build', 's3:productionCached', 's3:productionUncached']);
-	grunt.registerTask('deployPreview', ['build', 's3:previewCached', 's3:previewUncached']);
+	grunt.registerTask('deploy', ['build', 'cdn:production', 's3:productionCached', 's3:productionUncached']);
+	grunt.registerTask('deployPreview', ['build', 'cdn:preview', 's3:previewCached', 's3:previewUncached']);
 
 	grunt.registerTask('_devBuild', ['clean', '_buildJS', '_buildTests', '_buildCSS', '_buildImages', '_buildFonts', '_buildHTML']);
 
