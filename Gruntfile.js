@@ -392,7 +392,8 @@ module.exports = function(grunt) {
 
 		cdn: {
 			options: {
-				flatten: false
+				flatten: true,
+				match: '^[^/]|^/[^/]'
 			},
 			production: {
 				options: {
