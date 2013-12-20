@@ -398,14 +398,14 @@ module.exports = function(grunt) {
 			production: {
 				options: {
 					// Provide the approate cdn url here
-					cdn: 'http://d3dqo9sjwth3ym.cloudfront.net/'
+					cdn: 'https://d3dqo9sjwth3ym.cloudfront.net/'
 				},
 				src: ['./dist/*.html', './dist/*.css']
 			},
 			preview: {
 				options: {
 					// Provide the approate cdn url here
-					cdn: 'http://d13ht7edwifawh.cloudfront.net'
+					cdn: 'https://d13ht7edwifawh.cloudfront.net'
 				},
 				src: ['./dist/*.html', './dist/*.css']
 			},
