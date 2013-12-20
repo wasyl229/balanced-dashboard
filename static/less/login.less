@@ -28,10 +28,10 @@
     text-align: center;
 
     &.alert-error {
-      background-color: @errorRed100;
+      background-color: @errorRed20;
       border: 0;
       border-color: transparent;
-      color: @white;
+      color: @errorRed100;
     }
     &.alert-black {
       background-color: @black;
@@ -50,7 +50,11 @@
     padding: 36px;
 
     &.error {
-      background-color: @errorRed20;
+/*      background-color: @errorRed20;*/
+
+      input {
+        border-color: @errorRed100;
+      }
     }
 
     input {
@@ -71,7 +75,7 @@
       margin: 15px auto 0;
       text-align: center;
       display: block;
-      color: @pineGreen80;
+      color: @linkColor;
     }
   }
 
@@ -100,7 +104,7 @@
     a.forgot-password {
       font-size: 13px;
       line-height: 15px;
-      color: @textColor;
+      color: @linkColor;
       cursor: pointer;
       margin-top: 10px;
 
