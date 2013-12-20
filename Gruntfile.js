@@ -392,21 +392,19 @@ module.exports = function(grunt) {
 
 		cdn: {
 			options: {
-				// Provide the approate cdn url here
-				cdn: 'http://cdn.cloudfront.net/container/',
 				flatten: false
 			},
 			production: {
 				options: {
 					// Provide the approate cdn url here
-					cdn: 'http://cdn.cloudfront.net/container/'
+					cdn: 'http://d3dqo9sjwth3ym.cloudfront.net/'
 				},
 				src: ['./dist/*.html', './dist/*.css']
 			},
 			preview: {
 				options: {
 					// Provide the approate cdn url here
-					cdn: 'http://cdn.cloudfront.net/container/'
+					cdn: 'http://d13ht7edwifawh.cloudfront.net'
 				},
 				src: ['./dist/*.html', './dist/*.css']
 			},
